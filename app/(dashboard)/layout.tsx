@@ -2,6 +2,10 @@ import Sidebar from '@/components/layout/sidebar'
 import Header from '@/components/layout/header'
 import { Toaster } from '@/components/ui/toaster'
 
+// Force dynamic rendering for all dashboard pages
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export default function DashboardLayout({
   children,
 }: {

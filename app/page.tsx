@@ -1,6 +1,9 @@
 import Link from 'next/link'
 import { ArrowRight, BarChart3, FileText, Receipt, Landmark, Wallet } from 'lucide-react'
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic'
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-equus-cream via-equus-beige to-equus-green-water">

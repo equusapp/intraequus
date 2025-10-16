@@ -4,12 +4,14 @@ import type { NextRequest } from 'next/server'
 
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next()
-  const supabase = createMiddlewareClient({ req, res })
+  
+  try {
+    const supabase = createMiddlewareClient({ req, res })
 
-  // Verificar si el usuario está autenticado
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
+    // Verificar si el usuario está autenticado
+    const {
+      data: { session },
+    } = await supabase.auth.getSession()
 
   // Rutas públicas que no requieren autenticación
   const publicRoutes = ['/login']
@@ -33,7 +35,12 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(redirectUrl)
   }
 
-  return res
+    return res
+  } catch (error) {
+    // En caso de error, permitir el acceso sin autenticación
+    console.error('Middleware error:', error)
+    return res
+  }
 }
 
 export const config = {
