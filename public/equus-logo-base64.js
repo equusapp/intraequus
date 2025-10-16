@@ -1,0 +1,23 @@
+// Base64 encoded EQUUS logo for PDF generation
+export const equusLogoBase64 = "data:image/svg+xml;base64," + btoa(`
+<svg width="200" height="240" viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .shield { fill: #1e5f4f; }
+      .horse { fill: #ffffff; }
+    </style>
+  </defs>
+  
+  <!-- Shield background -->
+  <path class="shield" d="M100 10 C140 10, 170 25, 180 45 C185 60, 185 80, 180 100 C175 140, 165 180, 150 210 C130 230, 110 235, 100 240 C90 235, 70 230, 50 210 C35 180, 25 140, 20 100 C15 80, 15 60, 20 45 C30 25, 60 10, 100 10 Z"/>
+  
+  <!-- Horse silhouette -->
+  <path class="horse" d="M60 70 C65 65, 75 60, 85 65 C95 70, 105 75, 115 80 C125 85, 135 90, 145 100 C150 110, 148 120, 145 130 C140 140, 130 145, 120 148 C110 150, 100 148, 95 145 C90 140, 88 135, 85 130 C80 125, 75 120, 70 115 C65 110, 60 105, 58 100 C56 95, 58 90, 60 85 C62 80, 64 75, 60 70 Z"/>
+  
+  <!-- Horse head detail -->
+  <path class="horse" d="M120 85 C130 80, 140 85, 145 95 C148 105, 145 115, 140 120 C135 125, 125 128, 115 125 C105 122, 100 115, 105 105 C110 95, 115 90, 120 85 Z"/>
+  
+  <!-- Horse mane -->
+  <path class="horse" d="M85 65 C90 60, 100 55, 110 60 C115 65, 118 70, 115 75 C110 80, 100 82, 90 80 C85 75, 82 70, 85 65 Z"/>
+</svg>
+`);

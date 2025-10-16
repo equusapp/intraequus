@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { 
   LayoutDashboard, 
@@ -64,9 +65,23 @@ export default function Sidebar() {
     <div className="flex h-screen w-64 flex-col bg-white border-r border-equus-sand">
       {/* Logo */}
       <div className="flex h-16 items-center px-6 border-b border-equus-sand">
-        <h1 className="text-xl font-bold text-gray-800">
-          EQUUS <span className="text-equus-blue-soft">Accounting</span>
-        </h1>
+        <div className="flex items-center gap-3">
+          <Image
+            src="/equus-logo.svg"
+            alt="EQUUS Logo"
+            width={32}
+            height={38}
+            className="flex-shrink-0"
+          />
+          <div>
+            <h1 className="text-lg font-bold text-gray-800 leading-tight">
+              EQUUS
+            </h1>
+            <p className="text-xs text-equus-blue-soft font-medium">
+              Accounting
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* Navigation */}

@@ -80,11 +80,11 @@ export default function SupabaseTest() {
           id: '123e4567-e89b-12d3-a456-426614174000',
           name: 'EQUUS THE HORSING APP, S.L.',
           tax_id: 'B22810535',
-          address: 'Calle Ginzo de Limia 53, Piso 17 Puerta A',
+          address: 'Calle Ejemplo 123',
           city: 'Madrid',
-          postal_code: '28034',
+          postal_code: '28001',
           country: 'España'
-        })
+        } as any)
 
       if (companyError) {
         console.error('❌ Error al insertar empresa:', companyError)
@@ -101,7 +101,7 @@ export default function SupabaseTest() {
           tax_id: 'B11111111',
           email: 'test@test.com',
           type: 'client'
-        })
+        } as any)
 
       if (contactError) {
         console.error('❌ Error al insertar contacto:', contactError)
@@ -124,7 +124,7 @@ export default function SupabaseTest() {
           vat_amount: 21,
           total_amount: 121,
           status: 'pending'
-        })
+        } as any)
 
       if (invoiceError) {
         console.error('❌ Error al insertar factura:', invoiceError)

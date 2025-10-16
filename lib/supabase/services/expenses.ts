@@ -1,9 +1,62 @@
-import { createClient } from '../client'
-import { Database } from '../types'
+import { createClient } from '../client-typed'
 
-type Expense = Database['public']['Tables']['expenses']['Row']
-type ExpenseInsert = Database['public']['Tables']['expenses']['Insert']
-type ExpenseUpdate = Database['public']['Tables']['expenses']['Update']
+// Temporary interface for deployment
+interface Expense {
+  id: string
+  company_id: string
+  supplier_id: string | null
+  expense_date: string
+  concept: string
+  amount: number
+  vat_rate: number
+  vat_amount: number
+  total_amount: number
+  category: string
+  payment_method: string
+  status: 'pending' | 'paid'
+  notes: string | null
+  receipt_url: string | null
+  created_at: string
+  updated_at: string
+}
+
+interface ExpenseInsert {
+  id?: string
+  company_id?: string
+  supplier_id?: string | null
+  expense_date: string
+  concept: string
+  amount: number
+  vat_rate: number
+  vat_amount: number
+  total_amount: number
+  category: string
+  payment_method: string
+  status?: 'pending' | 'paid'
+  notes?: string | null
+  receipt_url?: string | null
+  created_at?: string
+  updated_at?: string
+}
+
+interface ExpenseUpdate {
+  id?: string
+  company_id?: string
+  supplier_id?: string | null
+  expense_date?: string
+  concept?: string
+  amount?: number
+  vat_rate?: number
+  vat_amount?: number
+  total_amount?: number
+  category?: string
+  payment_method?: string
+  status?: 'pending' | 'paid'
+  notes?: string | null
+  receipt_url?: string | null
+  created_at?: string
+  updated_at?: string
+}
 
 const TEMP_COMPANY_ID = '123e4567-e89b-12d3-a456-426614174000'
 
@@ -59,7 +112,7 @@ export const expensesService = {
       .insert({
         ...expense,
         company_id: TEMP_COMPANY_ID
-      })
+      } as any)
       .select()
       .single()
 

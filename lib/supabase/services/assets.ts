@@ -1,15 +1,62 @@
-import { createClient } from '../client'
-import { Database } from '../types'
+import { createClient } from '../client-typed'
 
-type Asset = Database['public']['Tables']['assets']['Row']
-type AssetInsert = Database['public']['Tables']['assets']['Insert']
-type AssetUpdate = Database['public']['Tables']['assets']['Update']
+// Temporary types for deployment
+interface Asset {
+  id: string
+  company_id: string
+  name: string
+  purchase_date: string
+  purchase_value: number
+  useful_life_years: number
+  depreciation_method: 'linear' | 'declining'
+  current_value: number
+  accumulated_depreciation: number
+  status: 'active' | 'sold' | 'fully_depreciated' | 'disposed'
+  notes: string | null
+  image_url: string | null
+  created_at: string
+  updated_at: string
+}
+
+interface AssetInsert {
+  id?: string
+  company_id: string
+  name: string
+  purchase_date: string
+  purchase_value: number
+  useful_life_years: number
+  depreciation_method?: 'linear' | 'declining'
+  current_value: number
+  accumulated_depreciation?: number
+  status?: 'active' | 'sold' | 'fully_depreciated' | 'disposed'
+  notes?: string | null
+  image_url?: string | null
+  created_at?: string
+  updated_at?: string
+}
+
+interface AssetUpdate {
+  id?: string
+  company_id?: string
+  name?: string
+  purchase_date?: string
+  purchase_value?: number
+  useful_life_years?: number
+  depreciation_method?: 'linear' | 'declining'
+  current_value?: number
+  accumulated_depreciation?: number
+  status?: 'active' | 'sold' | 'fully_depreciated' | 'disposed'
+  notes?: string | null
+  image_url?: string | null
+  created_at?: string
+  updated_at?: string
+}
 
 const TEMP_COMPANY_ID = '123e4567-e89b-12d3-a456-426614174000'
 
 export const assetsService = {
   // Obtener todos los activos
-  async getAll(companyId: string = TEMP_COMPANY_ID) {
+  async getAll(companyId: string = TEMP_COMPANY_ID): Promise<Asset[]> {
     const supabase = createClient()
     
     const { data, error } = await supabase
@@ -23,7 +70,7 @@ export const assetsService = {
       throw error
     }
 
-    return data
+    return data || []
   },
 
   // Obtener activo por ID
@@ -53,7 +100,7 @@ export const assetsService = {
       .insert({
         ...asset,
         company_id: TEMP_COMPANY_ID
-      })
+      } as any)
       .select()
       .single()
 
@@ -74,7 +121,7 @@ export const assetsService = {
       .update({
         ...asset,
         updated_at: new Date().toISOString()
-      })
+      } as any)
       .eq('id', id)
       .select()
       .single()

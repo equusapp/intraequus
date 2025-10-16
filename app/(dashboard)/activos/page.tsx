@@ -9,6 +9,9 @@ import AssetForm from '@/components/activos/asset-form'
 import AssetsList from '@/components/activos/assets-list'
 import DepreciationChart from '@/components/activos/depreciation-chart'
 import { assetsService } from '@/lib/supabase/services/assets'
+import { Database } from '@/lib/supabase/types'
+
+type Asset = Database['public']['Tables']['assets']['Row']
 
 export default function ActivosPage() {
   const [showForm, setShowForm] = useState(false)
@@ -30,7 +33,7 @@ export default function ActivosPage() {
       const assets = await assetsService.getAll()
       
       // Calcular valores con amortización actualizada
-      const assetsWithCalculations = assets.map(asset => {
+      const assetsWithCalculations = assets.map((asset: Asset) => {
         const accumulatedDepreciation = assetsService.calculateAccumulatedDepreciation(
           asset.purchase_date,
           asset.purchase_value,

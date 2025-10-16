@@ -1,12 +1,13 @@
-import { createClient } from '../client'
+import { createClient } from '../client-typed'
 
-// Tipos temporales hasta regenerar los tipos de Supabase
-type UserProfile = {
+// Temporary interfaces for deployment
+interface UserProfile {
   id: string
-  company_id: string
+  user_id: string
   email: string
   full_name: string | null
-  role: 'admin' | 'comercial'
+  role: 'admin' | 'comercial' | 'viewer'
+  company_id: string
   is_active: boolean
   created_at: string
   updated_at: string

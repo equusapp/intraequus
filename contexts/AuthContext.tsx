@@ -8,10 +8,11 @@ import { authService } from '@/lib/supabase/services/auth'
 // Tipo temporal hasta regenerar los tipos de Supabase
 type UserProfile = {
   id: string
+  user_id: string
   company_id: string
   email: string
   full_name: string | null
-  role: 'admin' | 'comercial'
+  role: 'admin' | 'comercial' | 'viewer'
   is_active: boolean
   created_at: string
   updated_at: string

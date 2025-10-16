@@ -76,12 +76,22 @@ export default function LoginPage() {
       {/* Lado izquierdo - Imagen de caballos */}
       <div className="hidden lg:flex lg:w-1/2 relative">
         <div className="absolute inset-0 bg-gradient-to-br from-teal-400 via-teal-500 to-teal-600">
-          {/* Placeholder hasta que añadas la imagen horses-water.jpg */}
+          {/* EQUUS Logo */}
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center text-white">
-              <div className="text-6xl mb-4">🐴</div>
-              <p className="text-xl font-medium">EQUUS</p>
-              <p className="text-sm opacity-75">The Horsing APP</p>
+              <div className="mb-6">
+                <Image
+                  src="/equus-logo.svg"
+                  alt="EQUUS Logo"
+                  width={120}
+                  height={144}
+                  className="mx-auto filter brightness-0 invert"
+                  priority
+                />
+              </div>
+              <p className="text-2xl font-bold mb-2">EQUUS</p>
+              <p className="text-lg opacity-90">The Horsing APP</p>
+              <p className="text-sm opacity-75 mt-2">Sistema de Gestión Ecuestre</p>
             </div>
           </div>
           {/* Uncomment when you add the image:

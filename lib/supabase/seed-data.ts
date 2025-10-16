@@ -21,7 +21,7 @@ export const seedData = {
           city: 'Madrid',
           postal_code: '28034',
           country: 'España'
-        })
+        } as any)
       
       if (companyError) {
         console.error('❌ Error al insertar empresa:', companyError)
@@ -62,7 +62,7 @@ export const seedData = {
       
       const { error: contactsError } = await supabase
         .from('contacts')
-        .upsert(contacts)
+        .upsert(contacts as any)
       
       if (contactsError) {
         console.error('❌ Error al insertar contactos:', contactsError)
@@ -120,7 +120,7 @@ export const seedData = {
       
       const { error: invoicesError } = await supabase
         .from('invoices')
-        .upsert(invoices)
+        .upsert(invoices as any)
       
       if (invoicesError) {
         console.error('❌ Error al insertar facturas:', invoicesError)

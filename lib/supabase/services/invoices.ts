@@ -1,9 +1,71 @@
-import { createClient } from '../client'
-import { Database } from '../types'
+import { createClient } from '../client-typed'
 
-type Invoice = Database['public']['Tables']['invoices']['Row']
-type InvoiceInsert = Database['public']['Tables']['invoices']['Insert']
-type InvoiceUpdate = Database['public']['Tables']['invoices']['Update']
+// Temporary types for deployment
+interface Invoice {
+  id: string
+  company_id: string
+  type: 'issued' | 'received'
+  invoice_number: string
+  contact_id: string
+  issue_date: string
+  operation_date: string | null
+  due_date: string | null
+  concept: string
+  base_amount: number
+  vat_rate: number
+  vat_amount: number
+  total_amount: number
+  status: 'pending' | 'paid' | 'overdue' | 'cancelled'
+  payment_date: string | null
+  notes: string | null
+  attachment_url: string | null
+  created_at: string
+  updated_at: string
+}
+
+interface InvoiceInsert {
+  id?: string
+  company_id?: string
+  type: 'issued' | 'received'
+  invoice_number: string
+  contact_id: string
+  issue_date: string
+  operation_date?: string | null
+  due_date?: string | null
+  concept: string
+  base_amount: number
+  vat_rate: number
+  vat_amount: number
+  total_amount: number
+  status?: 'pending' | 'paid' | 'overdue' | 'cancelled'
+  payment_date?: string | null
+  notes?: string | null
+  attachment_url?: string | null
+  created_at?: string
+  updated_at?: string
+}
+
+interface InvoiceUpdate {
+  id?: string
+  company_id?: string
+  type?: 'issued' | 'received'
+  invoice_number?: string
+  contact_id?: string
+  issue_date?: string
+  operation_date?: string | null
+  due_date?: string | null
+  concept?: string
+  base_amount?: number
+  vat_rate?: number
+  vat_amount?: number
+  total_amount?: number
+  status?: 'pending' | 'paid' | 'overdue' | 'cancelled'
+  payment_date?: string | null
+  notes?: string | null
+  attachment_url?: string | null
+  created_at?: string
+  updated_at?: string
+}
 
 // ID temporal de la empresa (en producción vendrá del usuario autenticado)
 const TEMP_COMPANY_ID = '123e4567-e89b-12d3-a456-426614174000'
@@ -81,7 +143,7 @@ export const invoicesService = {
       .insert({
         ...invoice,
         company_id: TEMP_COMPANY_ID
-      })
+      } as any)
       .select()
       .single()
 
@@ -185,7 +247,7 @@ export const invoicesService = {
 
     const { data, error } = await supabase
       .from('invoices')
-      .insert(newInvoice)
+      .insert(newInvoice as any)
       .select()
       .single()
 

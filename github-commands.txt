@@ -1,0 +1,6 @@
+﻿# Comandos para conectar con GitHub
+# Reemplaza TU_USUARIO por tu nombre de usuario de GitHub
+
+git remote add origin https://github.com/TU_USUARIO/equus-accounting.git
+git branch -M main
+git push -u origin main
